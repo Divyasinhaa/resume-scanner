@@ -36,10 +36,21 @@
     p {
       font-size: clamp(1rem, 3vw, 1.2rem);
       opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Responsive photo */
+    .profile-photo {
+      width: clamp(100px, 30vw, 160px);
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     }
 
     button {
-      margin-top: 2rem;
+      margin-top: 1rem;
       padding: 0.9rem 2.5rem;
       font-size: 1.1rem;
       font-weight: 600;
@@ -49,6 +60,7 @@
       background-color: #e0b973;
       color: #1c1c1c;
       transition: all 0.3s ease;
+      width: min(100%, 260px);
     }
 
     button:hover {
@@ -61,15 +73,15 @@
       max-width: 380px;
       background: #ffffff;
       color: #1c1c1c;
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       border-radius: 16px;
-      padding: 1.8rem;
+      padding: 1.6rem;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
       display: none;
     }
 
     .letter {
-      font-size: 1.05rem;
+      font-size: clamp(0.95rem, 3vw, 1.05rem);
       line-height: 1.6;
       min-height: 140px;
     }
@@ -91,15 +103,6 @@
       50% { transform: translateY(-6px); }
       100% { transform: translateY(0); }
     }
-
-    @media (max-width: 480px) {
-      .envelope {
-        padding: 1.4rem;
-      }
-      button {
-        width: 100%;
-      }
-    }
   </style>
 </head>
 
@@ -107,6 +110,9 @@
 
   <h1>Hey.</h1>
   <p>This is just for you.</p>
+
+  <!-- PHOTO -->
+  <img src="photo.jpg" alt="Photo" class="profile-photo">
 
   <button onclick="openLetter()">Open</button>
 
@@ -117,9 +123,9 @@
 
   <script>
     const message =
-      "I don’t know if you hear this enough, but you matter. " +
-      "Your presence, your effort, the way you show up — it all counts. " +
-      "This little page exists for one reason only: to remind you that you’re appreciated more than you think.";
+      "Just wanted to say that you matter. " +
+      "The effort you put in doesn’t go unnoticed. " +
+      "This page is just a small reminder of that.";
 
     let index = 0;
 
