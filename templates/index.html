@@ -1,124 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>A Little Surprise 💖</title>
+  <meta charset="UTF-8">
+  <title>A Small Surprise</title>
 
-    <!-- Cute font -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            font-family: 'Quicksand', sans-serif;
-            text-align: center;
-            padding-top: 80px;
-            color: #fff;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        h1 {
-            font-family: 'Pacifico', cursive;
-            font-size: 3.2em;
-            animation: pop 1s ease-in-out infinite alternate;
-        }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+      color: #ffffff;
+    }
 
-        .envelope {
-            width: 320px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 15px;
-            padding: 25px;
-            color: #ff5e78;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            display: none;
-        }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
+      animation: subtlePop 1.5s ease-in-out infinite alternate;
+    }
 
-        .letter {
-            font-size: 1.2em;
-            line-height: 1.6;
-            min-height: 150px;
-        }
+    p {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      opacity: 0.9;
+    }
 
-        button {
-            padding: 15px 35px;
-            font-size: 1.2em;
-            border: none;
-            border-radius: 30px;
-            background-color: #fff;
-            color: #ff5e78;
-            cursor: pointer;
-            margin-top: 30px;
-            font-weight: 600;
-        }
+    button {
+      margin-top: 2rem;
+      padding: 0.9rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      background-color: #e0b973;
+      color: #1c1c1c;
+      transition: all 0.3s ease;
+    }
 
-        button:hover {
-            background-color: #ff5e78;
-            color: #fff;
-        }
+    button:hover {
+      background-color: #ffffff;
+      transform: translateY(-2px);
+    }
 
-        .heart {
-            font-size: 1.5em;
-            animation: float 2s infinite ease-in-out;
-        }
+    .envelope {
+      width: 100%;
+      max-width: 380px;
+      background: #ffffff;
+      color: #1c1c1c;
+      margin-top: 2.5rem;
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+      display: none;
+    }
 
-        @keyframes pop {
-            from { transform: scale(1); }
-            to { transform: scale(1.08); }
-        }
+    .letter {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      min-height: 140px;
+    }
 
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0); }
-        }
-    </style>
+    .symbol {
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      opacity: 0.8;
+      animation: float 2.5s ease-in-out infinite;
+    }
+
+    @keyframes subtlePop {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .envelope {
+        padding: 1.4rem;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <h1>Hey you 💕</h1>
-    <p>I made something just for you</p>
+  <h1>Hey.</h1>
+  <p>This is just for you.</p>
 
-    <button onclick="openLetter()">Open the letter 💌</button>
+  <button onclick="openLetter()">Open</button>
 
-    <div class="envelope" id="envelope">
-        <div class="letter" id="letter"></div>
-        <div class="heart">💖 💕 💖</div>
-    </div>
+  <div class="envelope" id="envelope">
+    <div class="letter" id="letter"></div>
+    <div class="symbol">— ✨</div>
+  </div>
 
-    <script>
-        const message = `
-Dear You,
+  <script>
+    const message =
+      "I don’t know if you hear this enough, but you matter. " +
+      "Your presence, your effort, the way you show up — it all counts. " +
+      "This little page exists for one reason only: to remind you that you’re appreciated more than you think.";
 
-I just wanted you to know
-that you matter.
-More than you realize.
+    let index = 0;
 
-You make the world
-a little softer,
-a little brighter,
-just by being you.
+    function openLetter() {
+      document.getElementById("envelope").style.display = "block";
+      typeLetter();
+    }
 
-This tiny website?
-It exists only to make you smile 💗
-
-– Someone who cares 🌸
-        `;
-
-        let index = 0;
-
-        function openLetter() {
-            document.getElementById("envelope").style.display = "block";
-            typeLetter();
-        }
-
-        function typeLetter() {
-            if (index < message.length) {
-                document.getElementById("letter").innerHTML += message.charAt(index);
-                index++;
-                setTimeout(typeLetter, 40);
-            }
-        }
-    </script>
+    function typeLetter() {
+      if (index < message.length) {
+        document.getElementById("letter").innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeLetter, 35);
+      }
+    }
+  </script>
 
 </body>
 </html>
